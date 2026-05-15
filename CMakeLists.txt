@@ -10,22 +10,8 @@ find_package(ament_cmake REQUIRED)
 find_package(urdf REQUIRED)
 find_package(xacro REQUIRED)
 
-add_executable(new_node src/new_node.cpp)
-target_include_directories(new_node PUBLIC
-  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-  $<INSTALL_INTERFACE:include>)
-target_compile_features(new_node PUBLIC c_std_99 cxx_std_17)  # Require C99 and C++17
-ament_target_dependencies(
-  new_node
-  "urdf"
-  "xacro"
-)
-
-install(TARGETS new_node
-  DESTINATION lib/${PROJECT_NAME})
-
 install(
-  DIRECTORY launch meshes urdf test worlds
+  DIRECTORY launch meshes worlds
   DESTINATION share/${PROJECT_NAME}
 )
 
